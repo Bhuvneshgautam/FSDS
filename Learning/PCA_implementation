@@ -1,0 +1,31 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.linalg import eig
+from numpy.linalg import eig
+
+data=np.array([[3,4],[2,8],[6,9],[10,12]])
+
+
+df=pd.DataFrame(data,columns=["Math","Bio"])
+
+plt.scatter(df["Math"],df["Bio"])
+
+meanbycol=np.mean(data,axis=0)
+
+scaled_data=data-meanbycol
+
+stdbycol=np.std(data,axis=0)
+
+scaled_data=scaled_data/stdbycol
+
+scaled_data
+
+from sklearn.preprocessing import StandardScaler
+
+st = StandardScaler()
+st.fit_transform(df)
+
+scaled_data.T
+
+cov_mat=np.cov(scaled_data.T)
